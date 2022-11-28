@@ -19,7 +19,13 @@ const sources = {
 			name: "NextJS Static",
 		},
 	],
-	uiKit: [
+	components: [
+		{
+			repository: "https://github.com/rriosper/devaway-racing-services-demo",
+			name: "NextJS",
+		},
+	],
+	utils: [
 		{
 			repository: "https://github.com/rriosper/devaway-racing-services-demo",
 			name: "NextJS",
