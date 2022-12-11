@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.4.0
+
+### Minor Changes
+
+- filter packages with empty source
+
 ## 0.3.0
 
 ### Minor Changes

@@ -7,7 +7,9 @@ const usePackagesFormSection = () => {
 
 	return {
 		title: 'Packages',
-		fields: Object.entries(config.sources).map(([source, repositories]) => ({
+		fields: Object.entries(config.sources)
+			.filter(([, repositories]) => repositories.length > 0)
+			.map(([source, repositories]) => ({
 				type: 'multiselect',
 				name: source,
 				label: source,
