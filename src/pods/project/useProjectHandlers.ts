@@ -1,6 +1,6 @@
 import gitClone from 'git-clone/promise';
 
-import { removeGITOnModule } from '../common/fs';
+import { removeGITOnModule, updatePackageJSON } from '../common/fs';
 import useConfig from '../config/useConfig';
 
 import { RootProject } from './types';
@@ -10,6 +10,7 @@ const useProjectHandlers = () => {
 
 	const createMonorepo = async (projectData: RootProject) => {
 		await gitClone(templates.monorepo.default.repository, dirs.root);
+		await updatePackageJSON(dirs.root, projectData);
 		await removeGITOnModule(dirs.root);
 	};
 

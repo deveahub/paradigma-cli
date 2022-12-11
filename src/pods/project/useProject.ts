@@ -10,7 +10,7 @@ const useProject = () => {
 		: {
 				...PROJECT_CONFIG_DEFAULT_VALUE,
 				created: false,
-		  };
+		};
 };
 
 export default useProject;

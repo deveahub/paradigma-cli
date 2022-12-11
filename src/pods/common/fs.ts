@@ -33,7 +33,10 @@ export const readPackageJSON = async (path: string) => {
 	}
 };
 
-export const readPackageSources = async (rootPath: string) => {
+export const readPackageSources = async (
+	rootPath: string,
+	firstIteration = true
+) => {
 	const currentSources = await readdir(rootPath);
 
 	const readPackageSource = async (path: string): Promise<Sources> => {
@@ -48,12 +51,14 @@ export const readPackageSources = async (rootPath: string) => {
 								|| packageJSON?.repository.toString(),
 						},
 					],
-			  }
-			: readPackageSources(path);
+			}
+			: readPackageSources(path, false);
 	};
 
 	const promises = currentSources
-		.filter((n) => Object.keys(sources).includes(n))
+		.filter((n) => firstIteration
+				? Object.keys(sources).includes(n)
+				: !n.match(/^(\.\w+|\w+\.\w+)$/))
 		.map((p) => readPackageSource(resolve(rootPath, p)));
 
 	const result = await Promise.all(promises);
@@ -89,20 +94,12 @@ export const updatePackageJSON = async (
 ) => {
 	const currentPackageJSON = (await readPackageJSON(path)) || {};
 	await rm(resolve(path, 'package.json'), { force: true });
-	const { repository, ...newPackageJSON } = {
+	const newPackageJSON = {
 		...omit((currentPackageJSON as any) || {}, ['repository']),
 		...data,
 	} as any;
 
-	await createPackageJSON(path, {
-		...newPackageJSON,
-		...(repository && {
-			repository: {
-				type: 'git',
-				url: repository,
-			},
-		}),
-	});
+	await createPackageJSON(path, newPackageJSON);
 };
 
 export const existDirectory = async (path: string) => {

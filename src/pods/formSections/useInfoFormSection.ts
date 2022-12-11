@@ -30,7 +30,7 @@ const useInfoFormSection = () => {
 				type: 'string',
 				name: 'repository',
 				label: 'Repository URL',
-				initialValue: project.repository,
+				initialValue: project.repository || '',
 			},
 		],
 	};

@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.3.0
+
+### Minor Changes
+
+- fix reading packages sources
+
 ## 0.2.0
 
 ### Minor Changes
