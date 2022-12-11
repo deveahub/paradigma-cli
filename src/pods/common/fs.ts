@@ -4,6 +4,7 @@ import { rm, writeFile, readFile, readdir, rmdir, lstat } from 'fs/promises';
 import { omit } from 'remeda';
 
 import { Sources } from '../config/types';
+import sources from '../config/sources';
 
 import { PackageJSON } from './types';
 import { getNameFromRepository } from './repository';
@@ -33,25 +34,26 @@ export const readPackageJSON = async (path: string) => {
 };
 
 export const readPackageSources = async (rootPath: string) => {
-	const sources = await readdir(rootPath);
+	const currentSources = await readdir(rootPath);
 
 	const readPackageSource = async (path: string): Promise<Sources> => {
 		const packageJSON = await readPackageJSON(path);
-		if (!packageJSON) return readPackageSources(path);
-		return {
-			[path.match(/.*\/(.+)\/.+$/)?.[1] || '']: [
-				{
-					repository: packageJSON?.repository.toString(),
-					name:
-						getNameFromRepository(packageJSON?.repository)
-						|| packageJSON?.repository.toString(),
-				},
-			],
-		};
+		return packageJSON
+			? {
+					[path.match(/.*\/(.+)\/.+$/)?.[1] || '']: [
+						{
+							repository: packageJSON?.repository.toString(),
+							name:
+								getNameFromRepository(packageJSON?.repository)
+								|| packageJSON?.repository.toString(),
+						},
+					],
+			  }
+			: readPackageSources(path);
 	};
 
-	const promises = sources
-		.filter((n) => !n.match(/^(\.\w+|\w+\.\w+)$/))
+	const promises = currentSources
+		.filter((n) => Object.keys(sources).includes(n))
 		.map((p) => readPackageSource(resolve(rootPath, p)));
 
 	const result = await Promise.all(promises);
@@ -86,10 +88,9 @@ export const updatePackageJSON = async (
 	data: Record<string, unknown>
 ) => {
 	const currentPackageJSON = (await readPackageJSON(path)) || {};
-
 	await rm(resolve(path, 'package.json'), { force: true });
 	const { repository, ...newPackageJSON } = {
-		...omit(currentPackageJSON as any || {}, ['repository']),
+		...omit((currentPackageJSON as any) || {}, ['repository']),
 		...data,
 	} as any;
 

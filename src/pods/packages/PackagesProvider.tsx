@@ -24,6 +24,7 @@ const PackagesProvider = ({ children }: PackagesProviderProps) => {
 			const sources = await readPackageSources(root);
 			setPackages(sources);
 		}
+
 		setIsChecked(true);
 	}, [root, created]);
 

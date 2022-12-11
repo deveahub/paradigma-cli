@@ -1,14 +1,14 @@
 {
 	"name": "@rrios-dev/paradigma-cli",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"license": "MIT",
 	"bin": "dist/index.js",
 	"engines": {
 		"node": ">=10"
 	},
 	"publishConfig": {
-        "registry": "https://npm.pkg.github.com/rrios-dev"
-    },
+		"registry": "https://npm.pkg.github.com/rrios-dev"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/rrios-dev/paradigma-cli"

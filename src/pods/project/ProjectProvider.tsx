@@ -19,9 +19,7 @@ const ProjectProvider = ({ children }: ProjectProviderProps) => {
 
 	const setProjectValues = useCallback(async () => {
 		const packageJSON = await readPackageJSON(root);
-		if (packageJSON) {
-			setRootProject(packageJSON);
-		}
+		if (packageJSON) setRootProject(packageJSON);
 		setIsChecked(true);
 	}, [root]);
 
