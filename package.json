@@ -6,6 +6,13 @@
 	"engines": {
 		"node": ">=10"
 	},
+	"publishConfig": {
+        "registry": "https://npm.pkg.github.com/rrios-dev"
+    },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rrios-dev/paradigma-cli"
+	},
 	"scripts": {
 		"build:watch": "ncc build ./src/cli.tsx -o dist -w && chmod +x dist/index.js",
 		"build": "ncc build ./src/cli.tsx -o dist && chmod +x dist/index.js",
