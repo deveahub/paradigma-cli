@@ -4,7 +4,10 @@ import BigText from 'ink-big-text';
 import meow from 'meow';
 import React from 'react';
 
+import packageJSON from '../package.json';
+
 import AppRouter from './components/AppRouter';
+import Text from './components/Text';
 import ConfigProvider from './pods/config/ConfigProvider';
 import HistoryProvider from './pods/history/HistoryProvider';
 import PackagesProvider from './pods/packages/PackagesProvider';
@@ -33,6 +36,10 @@ render(
         </ProjectProvider>
       </ConfigProvider>
     </HistoryProvider>
+    <Text color="info-dark-2">
+      v
+      {packageJSON.version}
+    </Text>
   </Box>
 );
 

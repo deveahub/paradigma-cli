@@ -9,6 +9,7 @@
 		"baseUrl": ".",
 		"noUnusedParameters": false,
 		"noUnusedLocals": false,
+		"resolveJsonModule": true,
 		"paths": {
 			"@/*": [
 				"./src/*"

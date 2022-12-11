@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.5.0
+
+### Minor Changes
+
+- c821d36: add version to initial menu
+
 ## 0.4.0
 
 ### Minor Changes
