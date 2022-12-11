@@ -1,7 +1,8 @@
-import React, { ReactNode, useMemo } from "react";
-import { resolve } from "path";
+import { resolve } from 'path';
 
-import context from "./configContext";
+import React, { ReactNode, useMemo } from 'react';
+
+import context from './configContext';
 
 interface ConfigProviderProps {
 	children: ReactNode;
@@ -9,35 +10,30 @@ interface ConfigProviderProps {
 
 const ConfigProvider = ({ children }: ConfigProviderProps) => {
 	const rootDir = useMemo(
-		() =>
-			`${process.cwd()}${
-				process.env.NODE_ENV === "development" ? "/dev-test" : ""
+		() => `${process.cwd()}${
+				process.env.NODE_ENV === 'development' ? '/dev-monorepo' : ''
 			}`,
 		[]
 	);
 
 	return (
-		<context.Provider
-			value={{
+  <context.Provider
+    value={{
 				dirs: {
 					root: rootDir,
-					rootPackageJSON: resolve(rootDir, "package.json"),
-					packages: resolve(rootDir, "packages"),
-					apps: resolve(rootDir, "apps"),
-					services: resolve(rootDir, "services"),
-					"react-packages": resolve(rootDir, "react-packages"),
+					rootPackageJSON: resolve(rootDir, 'package.json'),
 				},
 			}}
 		>
-			{children}
-		</context.Provider>
+    {children}
+  </context.Provider>
 	);
 };
 
 declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
-			NODE_ENV: "development" | undefined;
+			NODE_ENV: 'development' | undefined;
 		}
 	}
 }

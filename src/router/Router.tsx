@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from "react";
-import { context, ContextState } from "./context";
+import React, { ReactElement, useCallback, useState } from 'react';
+
+import { context, ContextState } from './context';
 
 interface RouterProps {
-	children: JSX.Element | JSX.Element[];
-	currentURL?: string;
+	children: ReactElement | ReactElement[];
+	defaultURL?: string;
 }
 
-const Router = ({ children, currentURL = "/" }: RouterProps) => {
+const Router = ({ children, defaultURL: currentURL = '/' }: RouterProps) => {
 	const [state, setState] = useState<ContextState>({
 		currentURL,
 		routes: new Map(),
@@ -25,9 +26,9 @@ const Router = ({ children, currentURL = "/" }: RouterProps) => {
 	);
 
 	return (
-		<context.Provider value={{ ...state, setState, push }}>
-			{children}
-		</context.Provider>
+  <context.Provider value={{ ...state, setState, push }}>
+    {children}
+  </context.Provider>
 	);
 };
 

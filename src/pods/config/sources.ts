@@ -1,46 +1,44 @@
-const sources = {
-	monorepo: [
-		{
-			repository: "https://github.com/rrios-dev/template-monorepo",
-			name: "default",
-		},
-	],
+import { Sources } from './types';
+
+const sources: Sources = {
 	apps: [
 		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "NextJS",
-		},
-		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "NextJS with API",
-		},
-		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "NextJS Static",
+			repository: 'https://github.com/rriosper/devaway-racing-services-demo',
+			name: 'NextJS',
 		},
 	],
-	components: [
+	components: [],
+	utils: [],
+	services: [],
+	theme: [],
+	devtools: [
 		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "NextJS",
+			repository: 'https://github.com/rrios-dev/jest-config-node',
+			name: 'Jest config node',
+		},
+		{
+			repository: 'https://github.com/rrios-dev/jest-config-react',
+			name: 'Jest config react',
+		},
+		{
+			repository: 'https://github.com/rrios-dev/eslint-config-node',
+			name: 'ESLint config node',
+		},
+		{
+			repository: 'https://github.com/rrios-dev/eslint-config-react',
+			name: 'ESLint config react',
+		},
+		{
+			repository: 'https://github.com/rrios-dev/eslint-config-base',
+			name: 'ESLint config base',
 		},
 	],
-	utils: [
+	core: [
 		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "NextJS",
+			repository: 'https://github.com/rrios-dev/tsconfig',
+			name: 'TS Config',
 		},
 	],
-	services: [
-		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "Apollo/GraphQL API",
-		},
-		{
-			repository: "https://github.com/rriosper/devaway-racing-services-demo",
-			name: "Express API",
-		},
-	],
-} as const;
+};
 
 export default sources;

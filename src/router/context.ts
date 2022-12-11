@@ -9,7 +9,7 @@ export type ContextState = {
 
 type ContextHandlers = {
 	setState: React.Dispatch<React.SetStateAction<ContextState>>;
-	push: (route: string) => void;
+	push: (route: string, parameters?: ContextState["parameters"]) => void;
 };
 
 type Context = ContextState & ContextHandlers;
