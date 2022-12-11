@@ -1,0 +1,76 @@
+name: Publish
+on:
+  push:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    name: install
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mskelton/setup-yarn@v1
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-modules-${{ github.sha }}-${{ github.run_number }}
+      - run: yarn --frozen-lockfile
+
+  publish:
+    name: publish
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ github.sha }}-${{ github.run_number }}
+      - name: Build
+        run: yarn build
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > ".npmrc"
+            email=contact@rrios.dev
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.RRIOS_DEV_UPLOAD_TOKEN }}
+      - run: yarn changeset:publish
+
+  publish-success-slack:
+    needs: publish
+    if: ${{ success() }}
+    name: Failed publish notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Workflow Notification
+        uses: come25136/workflow-notification-for-slack@main
+        with:
+          include_jobs: true
+          repo_token: ${{secrets.RRIOS_DEV_GITHUB_REPOSITORY }}
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          name: ${{github.repository}} - Published
+          icon_emoji: ":art:"
+
+  publish-failure-slack:
+    needs: publish
+    if: ${{ success() }}
+    name: Success publish notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Workflow Notification
+        uses: come25136/workflow-notification-for-slack@main
+        with:
+          include_jobs: true
+          repo_token: ${{secrets.RRIOS_DEV_GITHUB_REPOSITORY }}
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          name: ${{github.repository}} - Published
+          icon_emoji: ":art:"

@@ -1,5 +1,5 @@
 {
-	"name": "paradigma",
+	"name": "paradigma-cli",
 	"version": "0.0.0",
 	"license": "MIT",
 	"private": true,
@@ -10,6 +10,9 @@
 	"scripts": {
 		"build:watch": "ncc build ./src/cli.tsx -o dist -w && chmod +x dist/index.js",
 		"build": "ncc build ./src/cli.tsx -o dist && chmod +x dist/index.js",
+		"changeset:add": "changeset",
+		"changeset:publish": "changeset publish",
+		"changeset:version": "changeset version",
 		"commit": "cz",
 		"prepare": "husky install",
 		"pretest": "npm run build",
@@ -61,6 +64,7 @@
 		}
 	},
 	"devDependencies": {
+		"@changesets/cli": "^2.25.2",
 		"@commitlint/config-conventional": "^17.3.0",
 		"@sindresorhus/tsconfig": "^3.0.1",
 		"@types/git-clone": "^0.2.0",
