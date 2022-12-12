@@ -32,6 +32,10 @@ const sources: Sources = {
 			repository: 'https://github.com/rrios-dev/eslint-config-base',
 			name: 'ESLint config base',
 		},
+		{
+			repository: 'https://github.com/rrios-dev/commit-config',
+			name: 'Commit config',
+		},
 	],
 	core: [
 		{
