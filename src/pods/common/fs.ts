@@ -1,5 +1,14 @@
 import { resolve } from 'path';
-import { rm, writeFile, readFile, readdir, rmdir, lstat } from 'fs/promises';
+import { existsSync } from 'fs';
+import {
+	rm,
+	writeFile,
+	readFile,
+	readdir,
+	rmdir,
+	lstat,
+	mkdir,
+} from 'fs/promises';
 
 import { omit } from 'remeda';
 
@@ -33,6 +42,14 @@ export const readPackageJSON = async (path: string) => {
 	}
 };
 
+export const createDirectoryIfNotExists = async (path: string) => {
+	const exists = existsSync(path);
+
+	if (!exists) {
+		await mkdir(path, { recursive: true });
+	}
+};
+
 export const readPackageSources = async (
 	rootPath: string,
 	firstIteration = true
@@ -51,7 +68,7 @@ export const readPackageSources = async (
 								|| packageJSON?.repository.toString(),
 						},
 					],
-			}
+			  }
 			: readPackageSources(path, false);
 	};
 

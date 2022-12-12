@@ -49,7 +49,7 @@ const useInfoPackageFormSection = (templateScope: keyof typeof templates = 'pack
 				type: 'string',
 				name: 'author',
 				label: 'Author',
-				initialValue: 'Roberto Ríos <roberto.rios.perea@outlook.com>',
+				initialValue: 'Roberto Ríos <contact@rrios.dev>',
 				required: true,
 			},
 			{

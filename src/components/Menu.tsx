@@ -17,6 +17,10 @@ const items = [
 		label: 'NEW APP',
 		value: '/new-app',
 	},
+	{
+		label: 'TEMPLATES DEV',
+		value: '/templates',
+	},
 ];
 
 const Menu = () => {

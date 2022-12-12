@@ -6,6 +6,7 @@ import NewPackageStage from '@/stages/NewPackageStage';
 import ProjectStage from '@/stages/ProjectStage';
 import useProject from '@/pods/project/useProject';
 import NewAppStage from '@/stages/NewAppStage';
+import TemplatesStage from '@/stages/TemplatesStage';
 
 import Menu from './Menu';
 
@@ -17,6 +18,7 @@ const AppRouter = () => {
     <Route exact path="/project" component={ProjectStage} />
     <Route exact path="/new-package" component={NewPackageStage} />
     <Route exact path="/new-app" component={NewAppStage} />
+    <Route exact path="/templates" component={TemplatesStage} />
   </Router>
 	);
 };

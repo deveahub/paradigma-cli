@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.6.0
+
+### Minor Changes
+
+- add templates section
+
 ## 0.5.0
 
 ### Minor Changes
