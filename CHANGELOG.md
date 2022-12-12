@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.6.1
+
+### Patch Changes
+
+- fix packages section on templates stage
+
 ## 0.6.0
 
 ### Minor Changes

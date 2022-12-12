@@ -6,6 +6,7 @@ import useInfoFormSection from '@/pods/formSections/useInfoFormSection';
 import usePackagesFormSection from '@/pods/formSections/usePackagesFormSection';
 import { RootProject } from '@/pods/project/types';
 import useProject from '@/pods/project/useProject';
+import usePackages from '@/pods/packages/usePackages';
 
 export type ProjectFormValues = RootProject & {
 	[key: string]: string[];
@@ -17,8 +18,9 @@ export interface ProjectFormProps {
 
 const ProjectForm = ({ onSubmit }: ProjectFormProps) => {
 	const project = useProject();
+	const packages = usePackages();
 	const infoSection = useInfoFormSection();
-	const packagesSection = usePackagesFormSection();
+	const packagesSection = usePackagesFormSection(packages);
 
 	const form: FormProps = {
 		form: {

@@ -1,9 +1,8 @@
+import { Sources } from '../config/types';
 import useConfig from '../config/useConfig';
-import usePackages from '../packages/usePackages';
 
-const usePackagesFormSection = () => {
+const usePackagesFormSection = (packages: Sources = {}) => {
 	const config = useConfig();
-	const packages = usePackages();
 
 	return {
 		title: 'Packages',
