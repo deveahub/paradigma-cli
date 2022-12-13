@@ -4,7 +4,7 @@ import gitClone from 'git-clone/promise';
 import React from 'react';
 
 import NewPackageForm from '@/components/NewPackageForm';
-import { updatePackageJSON } from '@/pods/common/fs';
+import { removeGITOnModule, updatePackageJSON } from '@/pods/common/fs';
 import useConfig from '@/pods/config/useConfig';
 import { NewPackageValues } from '@/pods/project/types';
 import useRouter from '@/router/useRouter';
@@ -38,6 +38,8 @@ const NewPackageStage = () => {
 					},
 				}),
 			});
+
+			await removeGITOnModule(packagePath);
 			logger.success(`[INFO] - Package created
 				name: ${name}
 				version: ${version}

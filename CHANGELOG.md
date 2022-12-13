@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.6.2
+
+### Patch Changes
+
+- d021e73: add commit-config source
+
 ## 0.6.1
 
 ### Patch Changes

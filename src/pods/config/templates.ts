@@ -6,6 +6,10 @@ const templates = {
 		},
 	},
 	packages: {
+		basic: {
+			repository: 'https://github.com/rrios-dev/template-basic-package',
+			name: 'Basic package',
+		},
 		react: {
 			repository: 'https://github.com/rrios-dev/template-react-package',
 			name: 'React package',
