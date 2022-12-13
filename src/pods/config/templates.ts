@@ -24,6 +24,10 @@ const templates = {
 			repository: 'https://github.com/rrios-dev/template-next-app',
 			name: 'NextJS',
 		},
+		storybook: {
+			repository: 'https://github.com/rrios-dev/template-storybook-app',
+			name: 'Storybook',
+		},
 	},
 } as const;
 

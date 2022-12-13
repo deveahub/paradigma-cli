@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.6.3
+
+### Patch Changes
+
+- add storybook app template
+
 ## 0.6.2
 
 ### Patch Changes
