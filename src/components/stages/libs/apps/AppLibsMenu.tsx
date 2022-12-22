@@ -11,6 +11,7 @@ const AppLibsMenu = () => {
 			parameters: {
 				type: 'template',
 				scope: 'apps',
+				direct: 'true',
 			},
 		},
 	];

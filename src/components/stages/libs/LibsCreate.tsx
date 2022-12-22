@@ -14,7 +14,7 @@ import useProject from '@/pods/project/hooks/useProject';
 const LibsCreate = () => {
 	const {
 		goToRoot,
-		parameters: { type, scope },
+		parameters: { type, scope, direct },
 	} = useRouter();
 	const { root } = useProject<'created'>();
 	const { createLib } = useLibsHandlers();
@@ -45,7 +45,7 @@ const LibsCreate = () => {
       title="Create Lib"
       sources={Array.isArray(sources) ? sources : Object.values(sources)}
       scopes={root.workspaces.map((x) => x.replace('/**', ''))}
-      scope={scope as string}
+      scope={direct ? (scope as string) : undefined}
     />
   </BackTo>
 	);

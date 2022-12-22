@@ -10,7 +10,7 @@ import LibsCreateMenuType from './LibsCreateMenuType';
 
 const LibsCreateRunway = () => {
 	const [ready, setReady] = useState(false);
-	const { push, parameters: { type, scope } = {} } = useRouter();
+	const { push, parameters: { type, scope, direct } = {} } = useRouter();
 
 	useEffect(() => {
 		function check() {
@@ -19,12 +19,12 @@ const LibsCreateRunway = () => {
 			}
 
 			if (type && scope) {
-				push('/libs/create/form', { type, scope });
+				push('/libs/create/form', { type, scope, direct: direct as string });
 			}
 			setReady(true);
 		}
 		check();
-	}, [type, scope, push]);
+	}, [type, scope, push, direct]);
 
 	return ready ? (
   <>
