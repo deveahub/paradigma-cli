@@ -1,4 +1,4 @@
-import { Form } from 'ink-form';
+import { Form, FormField } from 'ink-form';
 import React from 'react';
 
 import { Lib } from '@/pods/libs/types';
@@ -6,20 +6,25 @@ import { PlainPackageJSON } from '@/pods/project/types';
 
 import { projectFields } from './fields';
 
-export type LibCreateFormValues = PlainPackageJSON & { template: string, scope: string };
+export type LibCreateFormValues = PlainPackageJSON & {
+	template: string;
+	scope: string;
+};
 
 export interface LibCreateFormProps {
 	title: string;
 	onSubmit: (values: LibCreateFormValues) => void;
 	sources: Lib[];
 	scopes: string[];
+	scope?: string;
 }
 
 const LibCreateForm = ({
 	onSubmit,
 	title,
 	sources: libs,
-	scopes
+	scopes,
+	scope,
 }: LibCreateFormProps) => (
   <Form
     form={{
@@ -38,22 +43,24 @@ const LibCreateForm = ({
 								label: lib.name,
 							})),
 						},
-						{
+						!scope && {
 							name: 'scope',
 							label: 'Scope',
 							required: true,
 							type: 'select',
-							options: scopes.map((scope) => ({
-								value: scope,
-								label: scope,
+							options: scopes.map((s) => ({
+								value: s,
+								label: s,
 							})),
 						},
 						...Object.values(projectFields),
-					],
+					].filter(Boolean) as FormField[],
 				},
 			],
 		}}
-    onSubmit={onSubmit as any}
+    onSubmit={
+			(async (v: LibCreateFormValues) => onSubmit({ ...v, scope: scope || v.scope })) as any
+		}
   />
 );
 

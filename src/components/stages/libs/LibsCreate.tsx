@@ -45,6 +45,7 @@ const LibsCreate = () => {
       title="Create Lib"
       sources={Array.isArray(sources) ? sources : Object.values(sources)}
       scopes={root.workspaces.map((x) => x.replace('/**', ''))}
+      scope={scope as string}
     />
   </BackTo>
 	);

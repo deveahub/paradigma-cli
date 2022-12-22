@@ -1,6 +1,6 @@
 {
 	"name": "@rrios-dev/paradigma-cli",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"license": "MIT",
 	"bin": "dist/index.js",
 	"engines": {

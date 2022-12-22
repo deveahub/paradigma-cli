@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.7.1
+
+### Patch Changes
+
+- add proper scope
+
 ## 0.7.0
 
 ### Minor Changes

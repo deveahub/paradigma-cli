@@ -13,12 +13,6 @@ const LibsMenu = () => {
 			label: 'Create',
 			value: '/libs/create',
 		},
-		{
-			label: 'Reload',
-			value: '/libs/reload',
-			onClick: () => {},
-			fallbackRedirect: '/',
-		},
 	];
 
 	return <MenuMaker items={items} />;
