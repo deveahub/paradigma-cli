@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.7.2
+
+### Patch Changes
+
+- be80e7d: fix
+
 ## 0.7.1
 
 ### Patch Changes
