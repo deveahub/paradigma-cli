@@ -1,6 +1,13 @@
-export interface SourceRepository {
-	repository: string;
-	name: string;
-}
+import { Templates } from '@/data/templates';
 
-export type Sources = Record<string, SourceRepository[]>;
+import { UnidentifiedLibs } from '../libs/types';
+
+export type ParadigmaExternalConfig = {
+	packages?: UnidentifiedLibs;
+	templates?: Templates;
+};
+
+export type ParadigmaConfig = {
+	packages: UnidentifiedLibs;
+	templates: Templates;
+};

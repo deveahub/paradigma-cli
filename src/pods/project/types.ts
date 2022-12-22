@@ -1,17 +1,42 @@
-import sources from '../config/sources';
+export type PackageJSONRepository = {
+	type: string;
+	url: string;
+};
 
-export type RootProject = {
+export type PackageJSON = {
 	name: string;
-	version: string;
-	author: string;
+	version?: string;
+	author?: string;
+	repository?: PackageJSONRepository;
+};
+
+export type PlainPackageJSON = Omit<PackageJSON, 'repository'> & {
 	repository: string;
 };
 
-export type NewPackageValues = RootProject & {
-	source: keyof typeof sources;
-	template: string;
+export type MonorepoPackageJSON = {
+	name: string;
+	version: string;
+	author: string;
+	private: true;
+	workspaces: string[];
+	repository?: PackageJSONRepository;
 };
 
-export type NewAppValues = RootProject & {
-	template: string;
-};
+interface ProjectStateBase {
+	modules: PackageJSON[];
+}
+
+export type ProjectStatus = 'empty' | 'created';
+
+export interface ProjectCreatedState extends ProjectStateBase {
+	root: MonorepoPackageJSON;
+	created: true;
+}
+
+export interface ProjectEmptyState extends ProjectStateBase {
+	root: null;
+	created: false;
+}
+
+export type ProjectState = ProjectCreatedState | ProjectEmptyState;

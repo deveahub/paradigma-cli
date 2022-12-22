@@ -1,65 +1,54 @@
-import templates from '../config/templates';
-import useConfig from '../config/useConfig';
+// import { projectFields } from '@/components/forms/fields';
+// import { PROJECT_CONFIG_DEFAULT_VALUE } from '@/data/defaultValues';
 
-const useInfoPackageFormSection = (templateScope: keyof typeof templates = 'packages') => {
-	const config = useConfig();
+// import useConfig from '../config/useConfig';
+// import useRootPath from '../config/useRootPath';
 
-	const sourcesOptions = Object.keys(config.sources).map((sourceName) => ({
-		label: sourceName,
-		value: sourceName,
-	}));
+// const useInfoPackageFormSection = () => {
+// 	const config = useRootPath();
+// 	const { packages, templates } = useConfig();
 
-	const templatesOptions = Object.values(config.templates[templateScope]).map(
-		(template) => ({
-			label: template.name,
-			value: template.repository,
-		})
-	);
-	return {
-		title: 'Info',
-		fields: [
-			{
-				type: 'select',
-				name: 'template',
-				label: 'Template',
-				required: true,
-				options: templatesOptions,
-			},
-			{
-				type: 'select',
-				name: 'source',
-				label: 'Source',
-				required: true,
-				options: sourcesOptions,
-			},
-			{
-				type: 'string',
-				name: 'name',
-				label: 'Name',
-				required: true,
-			},
-			{
-				type: 'string',
-				name: 'version',
-				label: 'Version',
-				initialValue: '1.0.0',
-				required: true,
-			},
-			{
-				type: 'string',
-				name: 'author',
-				label: 'Author',
-				initialValue: 'Roberto Ríos <contact@rrios.dev>',
-				required: true,
-			},
-			{
-				type: 'string',
-				name: 'repository',
-				label: 'Repository URL',
-				initialValue: '',
-			},
-		],
-	};
-};
+	// const packagesOptions = Object.keys(packages).map((sourceName) => ({
+	// 	label: sourceName,
+	// 	value: sourceName,
+	// }));
 
-export default useInfoPackageFormSection;
+	// const templatesOptions = Object.values(config.templates[templateScope]).map(
+	// 	(template) => ({
+	// 		label: template.name,
+	// 		value: template.repository,
+	// 	})
+	// );
+// 	return {
+// 		title: 'Info',
+// 		fields: [
+// 			{
+// 				type: 'select',
+// 				name: 'template',
+// 				label: 'Template',
+// 				required: true,
+// 				options: templatesOptions,
+// 			},
+// 			{
+// 				type: 'select',
+// 				name: 'source',
+// 				label: 'Source',
+// 				required: true,
+// 				options: sourcesOptions,
+// 			},
+// 			...Object.values({
+// 				...projectFields,
+// 				author: {
+// 					...projectFields.author,
+// 					initialValue: PROJECT_CONFIG_DEFAULT_VALUE.author,
+// 				},
+//                 version: {
+// 					...projectFields.version,
+// 					initialValue: PROJECT_CONFIG_DEFAULT_VALUE.version,
+// 				},
+// 			}),
+// 		],
+// 	};
+// };
+
+// export default useInfoPackageFormSection;

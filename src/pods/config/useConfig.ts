@@ -1,15 +1,7 @@
-import { useContext } from 'react';
+import { useRecoilValue } from 'recoil';
 
-import configContext from './configContext';
-import sources from './sources';
-import templates from './templates';
+import configAtom from './configAtom';
 
-const useConfig = () => {
-	const config = useContext(configContext);
-
-	if (!config) throw new Error('Config context is not valid');
-
-	return { ...config, sources, templates };
-};
+const useConfig = () => useRecoilValue(configAtom);
 
 export default useConfig;

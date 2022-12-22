@@ -1,5 +1,11 @@
 # paradigma-cli
 
+## 0.7.0
+
+### Minor Changes
+
+- restructure project
+
 ## 0.6.3
 
 ### Patch Changes
